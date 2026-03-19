@@ -2,6 +2,7 @@
 title = MediaDownloaderUltra
 package.name = mediadownloader
 package.domain = org.elazar
+version = 1.0
 source.dir = .
 source.include_exts = py,kv
 requirements = python3,kivy,yt-dlp,android
