@@ -1,0 +1,47 @@
+BoxLayout:
+    orientation: "vertical"
+    padding: 20
+    spacing: 15
+
+    Label:
+        text: "🎬 Media Downloader ULTRA"
+        font_size: 22
+        size_hint_y: 0.15
+
+    TextInput:
+        id: url_input
+        hint_text: "הדבק קישור..."
+        multiline: False
+        size_hint_y: 0.15
+
+    Button:
+        text: "📋 הדבק"
+        size_hint_y: 0.15
+        on_press: url_input.text = Clipboard.paste()
+
+    Spinner:
+        id: format_spinner
+        text: "MP4"
+        values: ["MP4", "MP3"]
+        size_hint_y: 0.15
+
+    Spinner:
+        id: quality_spinner
+        text: "Best"
+        values: ["Best", "1080p", "720p", "480p"]
+        size_hint_y: 0.15
+
+    ProgressBar:
+        id: progress
+        max: 100
+        size_hint_y: 0.1
+
+    Label:
+        id: status
+        text: "מוכן"
+        size_hint_y: 0.1
+
+    Button:
+        text: "🚀 הורד"
+        size_hint_y: 0.2
+        on_press: app.start_download()
