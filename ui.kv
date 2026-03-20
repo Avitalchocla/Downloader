@@ -2,46 +2,50 @@ BoxLayout:
     orientation: "vertical"
     padding: 20
     spacing: 15
+    canvas.before:
+        Color:
+            rgba: (0.1, 0.1, 0.1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
     Label:
-        text: "🎬 Media Downloader ULTRA"
-        font_size: 22
+        text: "ELAZAR DOWNLOADER"
+        font_size: 24
+        bold: True
         size_hint_y: 0.15
+        color: (0, 0.8, 0.8, 1)
 
     TextInput:
         id: url_input
-        hint_text: "הדבק קישור..."
+        hint_text: "Paste Link..."
         multiline: False
-        size_hint_y: 0.15
+        size_hint_y: 0.12
 
     Button:
-        text: "📋 הדבק"
-        size_hint_y: 0.15
-        on_press: url_input.text = Clipboard.paste()
+        text: "PASTE LINK"
+        size_hint_y: 0.12
+        on_press: app.paste_link()
 
     Spinner:
         id: format_spinner
         text: "MP4"
         values: ["MP4", "MP3"]
-        size_hint_y: 0.15
-
-    Spinner:
-        id: quality_spinner
-        text: "Best"
-        values: ["Best", "1080p", "720p", "480p"]
-        size_hint_y: 0.15
+        size_hint_y: 0.12
 
     ProgressBar:
         id: progress
         max: 100
-        size_hint_y: 0.1
+        size_hint_y: 0.08
 
     Label:
         id: status
-        text: "מוכן"
+        text: "Ready"
         size_hint_y: 0.1
 
     Button:
-        text: "🚀 הורד"
+        text: "DOWNLOAD"
         size_hint_y: 0.2
+        bold: True
         on_press: app.start_download()
+        background_color: (0, 0.7, 0.3, 1)
