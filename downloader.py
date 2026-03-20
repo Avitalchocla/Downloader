@@ -2,17 +2,13 @@ import threading
 import yt_dlp
 import os
 
-# הגדרת נתיב התיקייה החדשה
 ELAZAR_PATH = "/storage/emulated/0/Download/ELAZAR_DOWNLOADS/"
 
 def download_video(url, fmt, progress_cb, done_cb, error_cb):
     def run():
         try:
-            # יצירת התיקייה אם היא לא קיימת
             if not os.path.exists(ELAZAR_PATH):
                 os.makedirs(ELAZAR_PATH)
-
-            ydl_format = "bestaudio/best" if "MP3" in fmt else "best"
 
             def hook(d):
                 if d['status'] == 'downloading':
@@ -23,19 +19,11 @@ def download_video(url, fmt, progress_cb, done_cb, error_cb):
                     progress_cb(100)
 
             ydl_opts = {
-                'format': ydl_format,
+                'format': 'bestaudio/best' if fmt == "MP3" else 'best',
                 'outtmpl': os.path.join(ELAZAR_PATH, '%(title)s.%(ext)s'),
                 'progress_hooks': [hook],
                 'noplaylist': True,
-                'restrictfilenames': True,
             }
-
-            if "MP3" in fmt:
-                ydl_opts['postprocessors'] = [{
-                    'key': 'FFmpegExtractAudio',
-                    'preferredcodec': 'mp3',
-                    'preferredquality': '192',
-                }]
 
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
